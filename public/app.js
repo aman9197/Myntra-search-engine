@@ -156,7 +156,9 @@ function renderTopFinding(data) {
 
 function renderCounterEvidence(counterData) {
   const banner = document.getElementById('counterEvidenceBanner');
+  if (!banner) return;
   const container = document.getElementById('counterList');
+  if (!container) return;
   container.innerHTML = '';
 
   if (!counterData || !counterData.has_disconfirming_evidence || counterData.examples.length === 0) {
