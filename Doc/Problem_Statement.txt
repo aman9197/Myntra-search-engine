@@ -1,0 +1,887 @@
+Absolutely. Since you are building the **AI Discovery Engine as a search engine using Antigravity**, the problem statement should be written as a **product + engineering specification**, not just as a generic assignment description.
+
+The key is: **do not tell the system that the problem is fit, price, reviews, etc.** Those should emerge from the research. The engine should discover and rank the problems from public user conversations.
+
+Below is a detailed problem statement you can directly give to Antigravity/Cursor/Claude Code.
+
+---
+
+# Problem Statement — AI-Powered Fashion Shopping Discovery Engine
+
+## 1. Project Title
+
+**AI-Powered Discovery Engine for Fashion Wishlist → Purchase Behavior**
+
+### Product Context
+
+We are building an AI-powered research and discovery engine to understand **why users save fashion products to their wishlist but do not eventually purchase them**.
+
+The initial business context is for **Myntra**, an online fashion marketplace.
+
+The business objective is:
+
+> **Increase the percentage of users who purchase at least one item from their wishlist within 30 days of adding it.**
+
+However, **the underlying user problem is unknown**.
+
+The purpose of this system is therefore **not to propose a solution upfront**.
+
+Instead, the system must analyze large volumes of publicly available user conversations and identify:
+
+* recurring user problems
+* unmet needs
+* purchase barriers
+* behavioral patterns
+* decision-making friction
+* differences between user segments
+* potential opportunity areas
+
+The output of the engine will subsequently be validated through primary user research.
+
+---
+
+# 2. Core Problem
+
+Fashion shoppers frequently save products that they like but do not immediately purchase.
+
+A user may:
+
+```text
+Discover product
+       ↓
+Like product
+       ↓
+Wishlist / Save
+       ↓
+Evaluate later
+       ↓
+Compare / Research / Wait
+       ↓
+Purchase OR Abandon
+```
+
+The critical unknown is:
+
+> **What happens between "I want this" and "I actually buy this"?**
+
+There may be multiple reasons.
+
+For example:
+
+* uncertainty about size or fit
+* uncertainty about quality
+* lack of trust in reviews
+* comparison with competing products
+* price/value uncertainty
+* waiting for an occasion
+* uncertainty about styling
+* product availability
+* forgetting about the product
+* wishlist overload
+* changing preferences
+* lack of social validation
+* purchasing from another platform
+* discovering a better alternative
+* simply using wishlist as a bookmarking mechanism
+
+**These are hypotheses, not predetermined problems.**
+
+The discovery engine must determine which problems actually appear consistently in user conversations.
+
+---
+
+# 3. Objective of the Discovery Engine
+
+Build an AI-powered search and analysis system that can answer:
+
+> **Why do fashion shoppers save products but fail to purchase them?**
+
+The engine should move beyond traditional:
+
+* keyword search
+* sentiment analysis
+* review summarization
+
+and instead perform **behavioral discovery and opportunity identification**.
+
+The system should identify:
+
+### A. User Intent
+
+Why did the user save the product?
+
+Examples:
+
+* genuine purchase intent
+* comparison
+* bookmarking
+* future purchase
+* waiting for occasion
+* waiting for information
+* social validation
+* price monitoring
+
+---
+
+### B. Purchase Barriers
+
+What prevented the user from purchasing?
+
+Examples:
+
+* fit uncertainty
+* quality uncertainty
+* price/value uncertainty
+* lack of trust
+* product comparison
+* availability
+* decision fatigue
+* styling uncertainty
+* changing need
+
+The system must **discover these categories automatically**, rather than relying only on predefined categories.
+
+---
+
+### C. Information Gaps
+
+What information does the user need before making the purchase decision?
+
+Examples:
+
+* size information
+* fit information
+* fabric/material
+* customer photos
+* reviews
+* styling examples
+* product comparisons
+* durability
+* return information
+
+---
+
+### D. External Workarounds
+
+Determine whether users leave the platform to solve their uncertainty.
+
+For example:
+
+```text
+Myntra
+   ↓
+User sees product
+   ↓
+Wishlist
+   ↓
+Google Search
+   ↓
+YouTube
+   ↓
+Instagram
+   ↓
+Reddit
+   ↓
+Other shopping app
+   ↓
+Purchase decision
+```
+
+The engine should identify these **cross-platform behaviors** wherever publicly available evidence exists.
+
+---
+
+# 4. Research Questions
+
+The engine should investigate the following questions.
+
+## Wishlist Intent
+
+1. Why do users wishlist fashion products?
+2. Is wishlist behavior always associated with purchase intent?
+3. What differentiates a genuine purchase intention from simple bookmarking?
+4. What happens to products after they are wishlisted?
+5. How long do users typically wait before purchasing?
+
+---
+
+## Purchase Barriers
+
+6. What prevents users from purchasing wishlisted products?
+7. Which barriers occur most frequently?
+8. Which barriers appear to be most severe?
+9. Which barriers are specific to particular fashion categories?
+10. Which barriers differ across user segments?
+
+---
+
+## Decision Making
+
+11. How do users decide between multiple shortlisted products?
+12. What causes users to abandon one product in favor of another?
+13. What information do users seek before purchasing?
+14. What causes users to postpone a purchase?
+15. What causes users to change their mind?
+
+---
+
+## External Research
+
+16. What information do users search for outside fashion marketplaces?
+17. Which platforms do they use?
+18. Why do they leave the shopping platform?
+19. What information are they unable to find within the shopping app?
+20. What workarounds do users currently use?
+
+---
+
+## User Segments
+
+21. Do barriers differ between:
+
+* Gen Z shoppers
+* working professionals
+* students
+* frequent shoppers
+* occasional shoppers
+* men
+* women
+* high-frequency fashion shoppers
+* low-frequency shoppers
+
+The engine should **discover meaningful segments from evidence**, rather than forcing every conversation into predetermined demographic categories.
+
+---
+
+# 5. Data Sources
+
+The system should be designed to ingest publicly available information from multiple sources.
+
+### Primary sources
+
+* Apple App Store reviews
+* Google Play Store reviews
+* Reddit
+* YouTube comments
+* public fashion communities
+* shopping communities
+* product reviews
+* product Q&A
+* public forums
+* fashion discussion websites
+* publicly available social conversations
+
+### Important constraint
+
+The system must distinguish between:
+
+**Direct user evidence**
+
+> "I saved this dress but didn't buy it because I wasn't sure about the size."
+
+and:
+
+**Generic commentary**
+
+> "Fashion apps should improve their sizing."
+
+Direct behavioral evidence should receive higher confidence.
+
+---
+
+# 6. Search Engine Experience
+
+The application should behave like an **AI research search engine**.
+
+The user should be able to ask natural-language questions such as:
+
+> "Why do Indian users wishlist fashion products but not purchase them?"
+
+or:
+
+> "What are the biggest barriers preventing fashion wishlist purchases?"
+
+or:
+
+> "Find evidence of users leaving fashion apps to research product quality."
+
+or:
+
+> "Compare fit-related problems vs price-related problems."
+
+or:
+
+> "What do Gen Z fashion shoppers need before purchasing a wishlisted product?"
+
+The system should return **evidence-backed answers**, not generic LLM responses.
+
+---
+
+# 7. Core Search Result
+
+Each result should ideally contain:
+
+### Source
+
+Reddit / App Store / YouTube / community etc.
+
+### User statement
+
+A short relevant excerpt.
+
+### Behavioral interpretation
+
+What the user was actually doing.
+
+### Theme
+
+Example:
+
+`Fit uncertainty`
+
+### Journey stage
+
+Example:
+
+`Wishlist → Evaluation`
+
+### User segment
+
+Example:
+
+`Frequent fashion shopper`
+
+### Purchase barrier
+
+Example:
+
+`Uncertainty about sizing`
+
+### Workaround
+
+Example:
+
+`Checked Instagram for customer photos`
+
+### Evidence strength
+
+Example:
+
+`High`
+
+### Source link
+
+Clickable source.
+
+---
+
+# 8. AI Processing Pipeline
+
+The architecture should follow:
+
+```text
+                    PUBLIC DATA SOURCES
+                           │
+          ┌────────────────┼────────────────┐
+          ↓                ↓                ↓
+       Reddit          App Reviews       YouTube
+          │                │                │
+          └────────────────┼────────────────┘
+                           ↓
+                    DATA INGESTION
+                           ↓
+                    CLEANING / DEDUP
+                           ↓
+                    RELEVANCE FILTER
+                           ↓
+                 AI BEHAVIOR EXTRACTION
+                           ↓
+              ┌────────────┼─────────────┐
+              ↓            ↓             ↓
+           Intent       Barrier       Workaround
+              ↓            ↓             ↓
+          Information    Segment      Journey Stage
+                           ↓
+                    THEME CLUSTERING
+                           ↓
+                 OPPORTUNITY ANALYSIS
+                           ↓
+                  EVIDENCE RANKING
+                           ↓
+                  AI SEARCH ENGINE
+                           ↓
+             OPPORTUNITY DASHBOARD
+```
+
+---
+
+# 9. AI Extraction Schema
+
+Every relevant piece of user feedback should be transformed into structured data.
+
+Use a schema similar to:
+
+```json
+{
+  "source": "Reddit",
+  "source_url": "",
+  "date": "",
+  "text": "",
+  "relevance_score": 0,
+  "user_intent": "",
+  "wishlist_behavior": "",
+  "purchase_status": "",
+  "purchase_barrier": "",
+  "uncertainty": "",
+  "information_needed": [],
+  "alternative_considered": "",
+  "external_research": [],
+  "workaround": "",
+  "user_segment": "",
+  "fashion_category": "",
+  "journey_stage": "",
+  "sentiment": "",
+  "evidence_strength": "",
+  "theme": "",
+  "sub_theme": ""
+}
+```
+
+The LLM should **not invent missing information**.
+
+If something isn't present:
+
+```text
+null
+```
+
+rather than an assumption.
+
+---
+
+# 10. Opportunity Identification
+
+The most important part of the system is the **Opportunity Engine**.
+
+The system should not simply say:
+
+> "Fit is a common problem."
+
+Instead, it should determine:
+
+### Frequency
+
+How often does this theme occur?
+
+### Recurrence
+
+Does the same problem appear across different sources?
+
+### Severity
+
+Does the problem actually prevent or delay purchase?
+
+### User impact
+
+How strongly does it affect the user's decision?
+
+### Journey proximity
+
+How close is the problem to the wishlist → purchase conversion event?
+
+### Segment concentration
+
+Does the problem disproportionately affect a specific segment?
+
+### Workaround intensity
+
+Are users actively doing something outside the platform to solve it?
+
+### Evidence quality
+
+Are there direct user statements supporting the problem?
+
+---
+
+# 11. Opportunity Score
+
+Create an **Opportunity Evidence Score** to help researchers compare themes.
+
+Do not treat this as the company's final KPI.
+
+It is purely a **research prioritization mechanism**.
+
+For example:
+
+```text
+Opportunity Score =
+Frequency
+× Severity
+× Purchase Proximity
+× Workaround Intensity
+× Evidence Strength
+```
+
+The exact weighting should be configurable.
+
+The UI should show the underlying components rather than only displaying a single black-box score.
+
+Example:
+
+| Opportunity         | Frequency | Severity | Purchase Proximity | Workaround | Evidence |
+| ------------------- | --------: | -------: | -----------------: | ---------: | -------: |
+| Fit uncertainty     |      High |     High |               High |       High |     High |
+| Review trust        |    Medium |     High |               High |     Medium |     High |
+| Wishlist overload   |    Medium |   Medium |             Medium |       High |   Medium |
+| Styling uncertainty |    Medium |   Medium |             Medium |     Medium |   Medium |
+
+**Important:** The system should allow these rankings to change as more evidence is added.
+
+---
+
+# 12. Segment Discovery
+
+The engine should identify behavioral segments.
+
+For example:
+
+```text
+Frequent shoppers
+        ↓
+High wishlist activity
+        ↓
+High comparison behavior
+        ↓
+High external research
+```
+
+versus:
+
+```text
+Occasional shoppers
+        ↓
+Low wishlist activity
+        ↓
+Wishlist used as bookmark
+        ↓
+Low purchase intent
+```
+
+The system should identify such patterns **from evidence**.
+
+Do not hard-code these conclusions.
+
+---
+
+# 13. Search Modes
+
+The application should support at least four modes.
+
+### Mode 1 — Explore
+
+Broad exploration.
+
+Example:
+
+> "What prevents fashion wishlist purchases?"
+
+---
+
+### Mode 2 — Compare
+
+Compare opportunity areas.
+
+Example:
+
+> "Compare fit uncertainty and price uncertainty."
+
+---
+
+### Mode 3 — Segment
+
+Explore differences between users.
+
+Example:
+
+> "How do frequent shoppers behave differently from occasional shoppers?"
+
+---
+
+### Mode 4 — Evidence
+
+Find direct user evidence.
+
+Example:
+
+> "Show me 20 examples of users who saved fashion products but didn't purchase them."
+
+---
+
+# 14. Evidence-Based AI Answers
+
+Every AI-generated conclusion should show its supporting evidence.
+
+For example:
+
+### Finding
+
+**Fit uncertainty appears to be a recurring purchase barrier.**
+
+### Why?
+
+* 37 relevant conversations
+* 18 direct purchase-related mentions
+* 11 mentions of sizing/fit uncertainty
+* 8 users describe checking external information
+* 6 users mention abandoning or delaying purchase
+
+### Representative evidence
+
+> User statement / paraphrase
+
+**Source:** Reddit
+**Journey:** Wishlist → Evaluation
+**Barrier:** Fit uncertainty
+
+Then provide:
+
+**View source →**
+
+This prevents the system from becoming a generic chatbot.
+
+---
+
+# 15. Negative Evidence
+
+The system should also look for evidence **against** a hypothesis.
+
+For example:
+
+```text
+Hypothesis:
+"Price is the main reason users don't purchase."
+
+Evidence:
+✓ 42 mentions of price
+✓ 15 postponement examples
+
+Counter-evidence:
+✓ Several users explicitly say price wasn't the issue
+✓ Users abandoned products despite discounts
+```
+
+This is extremely important because the goal is **discovery**, not confirmation bias.
+
+---
+
+# 16. Final Research Output
+
+The engine should ultimately produce an **Opportunity Map**.
+
+Example:
+
+```text
+                    WISHLIST → PURCHASE
+
+                           │
+        ┌──────────────────┼──────────────────┐
+        ↓                  ↓                  ↓
+     INTENT            CONFIDENCE          DECISION
+        │                  │                  │
+   Bookmarking       Fit uncertainty    Comparison
+   Future intent     Quality trust      Overload
+   Occasion          Reviews            Forgetting
+                     Styling
+                     Value
+```
+
+Each opportunity should be clickable.
+
+Clicking an opportunity should reveal:
+
+```text
+Opportunity
+     ↓
+Affected segments
+     ↓
+Evidence volume
+     ↓
+Representative user stories
+     ↓
+Purchase impact
+     ↓
+Workarounds
+     ↓
+External research
+     ↓
+Counter-evidence
+     ↓
+Research questions
+```
+
+---
+
+# 17. What the System Must NOT Do
+
+The system must **not**:
+
+❌ Assume fit is the problem.
+
+❌ Assume price is the problem.
+
+❌ Assume reviews are the problem.
+
+❌ Recommend discounts.
+
+❌ Jump directly to an AI feature.
+
+❌ Treat sentiment as a proxy for purchase behavior.
+
+❌ Present an LLM-generated assumption as fact.
+
+❌ Invent user feedback.
+
+❌ Generate fake statistics.
+
+❌ Treat every wishlist action as purchase intent.
+
+❌ Treat frequency alone as opportunity size.
+
+The system exists to **discover the problem before proposing the solution**.
+
+---
+
+# 18. Success Criteria for Phase 1
+
+The Discovery Engine will be considered successful if a researcher can go from:
+
+> **"Why aren't users buying their wishlisted fashion products?"**
+
+to:
+
+> **"Here are the major behavioral barriers, the segments affected, direct evidence supporting each barrier, existing workarounds, counter-evidence, and the 2–3 opportunities that deserve primary research."**
+
+within a few minutes.
+
+The output should be sufficiently evidence-backed that it can be taken into:
+
+**AI Discovery → User Interviews → Problem Definition → MVP**
+
+without prematurely deciding the solution.
+
+---
+
+# 19. Recommended MVP UI
+
+Build the search engine around this interface:
+
+```text
+┌──────────────────────────────────────────────────────────┐
+│                  DISCOVERY ENGINE                         │
+│                                                          │
+│  🔍 Why do users wishlist fashion products but          │
+│     don't purchase them?                                 │
+│                                                          │
+└──────────────────────────────────────────────────────────┘
+
+  Sources        Segments       Time       Journey Stage
+  ☑ Reddit       All            12M        Wishlist
+  ☑ Reviews
+
+───────────────────────────────────────────────────────────
+
+                    OPPORTUNITY MAP
+
+  Fit & Size       Review Trust      Comparison
+  ████████         ██████            █████
+
+  Wishlist UX      Price/Value       Styling
+  █████            █████             ████
+
+───────────────────────────────────────────────────────────
+
+  TOP FINDING
+
+  Fit uncertainty appears repeatedly in conversations
+  where users express interest but delay or abandon purchase.
+
+  Evidence: 37 conversations
+  Direct purchase mentions: 18
+  External workarounds: 11
+
+  [View Evidence] [Compare] [Explore Segment]
+
+───────────────────────────────────────────────────────────
+
+  USER EVIDENCE
+
+  "........................................"
+
+  Reddit • Wishlist → Evaluation
+  Barrier: Fit uncertainty
+
+  [View source]
+```
+
+---
+
+# 20. Technology Direction
+
+For the first version, keep the architecture relatively simple.
+
+```text
+Data Sources
+     ↓
+Scraping / APIs
+     ↓
+Python ingestion
+     ↓
+PostgreSQL / Supabase
+     ↓
+Embeddings + Vector DB
+     ↓
+LLM extraction
+     ↓
+Structured research database
+     ↓
+Opportunity scoring
+     ↓
+Search / RAG layer
+     ↓
+Antigravity frontend
+```
+
+For the AI layer, you can use an LLM for:
+
+* classification
+* extraction
+* clustering
+* synthesis
+* query understanding
+* evidence summarization
+
+while keeping the **raw evidence and structured fields in your database**.
+
+That separation is important: the LLM should reason over evidence, rather than becoming the evidence itself.
+
+---
+
+## The single most important principle
+
+Give Antigravity this instruction prominently:
+
+> **“Do not solve the problem. Build a system that discovers the problem.”**
+
+The engine should therefore end with something like:
+
+**Top discovered opportunities → Evidence → Confidence → Research questions**
+
+rather than:
+
+**Top discovered opportunity → AI solution**
+
+That distinction will make your project much stronger because your overall case then has a clear causal progression:
+
+**Business Metric → AI Discovery → Opportunity → User Interviews → Validated Problem → MVP → Business Impact**
+
+A useful next step is to turn this specification into an **Antigravity build prompt with exact screens, database schema, AI agents, APIs, search logic, and acceptance criteria**, so you can paste it directly into Antigravity and start building.

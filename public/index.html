@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Myntra AI Discovery Engine — Fashion Consumer Research Platform</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <!-- Chart.js for Visual Graph Analytics -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <div class="app-container">
+    <!-- Top Header -->
+    <header class="app-header">
+      <div class="brand-logo">
+        <div class="myntra-badge">M</div>
+        <div class="brand-title">
+          <h1>Myntra Discovery Engine</h1>
+          <span class="sub-title">AI Consumer Behavior & Wishlist Growth Research Platform</span>
+        </div>
+      </div>
+      <div class="header-actions">
+        <div class="groq-status-badge" id="groqStatusBadge">
+          <span class="status-dot"></span>
+          <span id="groqStatusText">Groq Cloud API Ready</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Search & Guided Question Research Section -->
+    <section class="search-section">
+      <!-- 10 Core Growth Research Question Selector Dropdown -->
+      <div class="question-selector-wrapper">
+        <label for="researchQuestionSelect" class="question-label">🎯 Guided Growth Research Questions:</label>
+        <select id="researchQuestionSelect" class="question-select">
+          <option value="">-- Select a Core Research Question to Analyze --</option>
+          <option value="Why do users add fashion products to their wishlist?">1. Why do users add fashion products to their wishlist?</option>
+          <option value="What prevents wishlisted products from eventually being purchased?">2. What prevents wishlisted products from eventually being purchased?</option>
+          <option value="What uncertainties remain after users have identified a product they like?">3. What uncertainties remain after users have identified a product they like?</option>
+          <option value="What causes users to postpone a purchase?">4. What causes users to postpone a purchase?</option>
+          <option value="How do users compare multiple shortlisted products?">5. How do users compare multiple shortlisted products?</option>
+          <option value="What information do users seek outside Myntra/AJIO before purchasing?">6. What information do users seek outside Myntra/AJIO before purchasing?</option>
+          <option value="What role do fit, size, styling, price, reviews, occasion and social validation play?">7. What role do fit, size, styling, price, reviews, occasion and social validation play?</option>
+          <option value="When do users use the wishlist as genuine purchase intent versus simply as a bookmarking mechanism?">8. When do users use the wishlist as genuine purchase intent versus simply as a bookmarking mechanism?</option>
+          <option value="How do these behaviors differ across user segments?">9. How do these behaviors differ across user segments?</option>
+          <option value="What unmet needs emerge consistently across user conversations?">10. What unmet needs emerge consistently across user conversations?</option>
+        </select>
+      </div>
+
+      <div class="search-box-wrapper">
+        <div class="search-input-container">
+          <span class="search-icon">🔍</span>
+          <input type="text" id="searchInput" placeholder="Or type any custom research query (e.g., fabric transparency or fit doubts in ethnic wear)..." autocomplete="off">
+          <button class="btn btn-primary" id="searchBtn">Discover Insights</button>
+        </div>
+      </div>
+
+      <!-- Multi-Facet Filters Bar with 1-5 Rating Filter and 8 Shopper Segments -->
+      <div class="filters-bar">
+        <div class="filter-group">
+          <label>Data Sources:</label>
+          <div class="checkbox-options">
+            <label class="cb-label"><input type="checkbox" value="App Store" class="filter-src" checked> App Store</label>
+            <label class="cb-label"><input type="checkbox" value="Play Store" class="filter-src" checked> Play Store</label>
+            <label class="cb-label"><input type="checkbox" value="Reddit" class="filter-src" checked> Reddit</label>
+            <label class="cb-label"><input type="checkbox" value="YouTube" class="filter-src" checked> YouTube</label>
+          </div>
+        </div>
+
+        <div class="filter-group">
+          <label>Star Rating (1-5★):</label>
+          <div class="checkbox-options">
+            <label class="cb-label"><input type="checkbox" value="1" class="filter-rating" checked> 1★</label>
+            <label class="cb-label"><input type="checkbox" value="2" class="filter-rating" checked> 2★</label>
+            <label class="cb-label"><input type="checkbox" value="3" class="filter-rating" checked> 3★</label>
+            <label class="cb-label"><input type="checkbox" value="4" class="filter-rating" checked> 4★</label>
+            <label class="cb-label"><input type="checkbox" value="5" class="filter-rating" checked> 5★</label>
+          </div>
+        </div>
+
+        <div class="filter-group">
+          <label>Shopper Segment (8 Personas):</label>
+          <select id="segmentFilter" class="filter-select">
+            <option value="">All 8 Shopper Segments</option>
+            <option value="Gen Z / Myntra FWD Trendseeker">Gen Z / Myntra FWD Trendseeker</option>
+            <option value="Working Professional / Premium Wear">Working Professional / Premium Wear</option>
+            <option value="EORS / Value Discount Hunter">EORS / Value Discount Hunter</option>
+            <option value="Occasional / Festival & Wedding Shopper">Occasional / Festival & Wedding Shopper</option>
+            <option value="Plus-Size / Inclusive Fit Shopper">Plus-Size / Inclusive Fit Shopper</option>
+            <option value="First-Time / Tier-2/3 City Shopper">First-Time / Tier-2/3 City Shopper</option>
+            <option value="Brand Loyalist / Repeat Buyer">Brand Loyalist / Repeat Buyer</option>
+            <option value="Mom & Kids / Family Apparel Buyer">Mom & Kids / Family Apparel Buyer</option>
+          </select>
+        </div>
+
+        <div class="filter-group" style="margin-left:auto;">
+          <button class="btn btn-outline" id="resetFiltersBtn">Reset Filters</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Main Content Dashboard -->
+    <main class="main-dashboard">
+      <!-- Top Finding Empirical Banner -->
+      <section class="top-finding-card" id="topFindingCard">
+        <div class="finding-header">
+          <span class="finding-badge">RESEARCH SYNTHESIS FINDING</span>
+          <span class="evidence-count-tag" id="findingCountTag">Matching Customer Feedback: 0</span>
+        </div>
+        <h2 class="finding-title" id="findingTitle">Analyzing Consumer Research Database...</h2>
+        <p class="finding-desc" id="findingDesc">Select a guided question or type a query above to explore empirical customer feedback.</p>
+
+        <!-- Empirical Stats Counter -->
+        <div class="empirical-stats-grid">
+          <div class="stat-box">
+            <span class="stat-val" id="statConversations">0</span>
+            <span class="stat-lbl">Matching Customer Reviews</span>
+          </div>
+          <div class="stat-box">
+            <span class="stat-val" id="statAbandonment">0</span>
+            <span class="stat-lbl">Abandonment Mentions</span>
+          </div>
+          <div class="stat-box">
+            <span class="stat-val" id="statWorkarounds">0</span>
+            <span class="stat-lbl">Off-App Workarounds</span>
+          </div>
+          <div class="stat-box">
+            <span class="stat-val" id="statDirectQuotes">0</span>
+            <span class="stat-lbl">High-Confidence Quotes</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Counter Evidence Panel -->
+      <section class="counter-evidence-banner" id="counterEvidenceBanner">
+        <div class="counter-header">
+          <span class="counter-badge">DISCONFIRMING EVIDENCE</span>
+          <span class="counter-subtitle">Surfaced to eliminate confirmation bias</span>
+        </div>
+        <div class="counter-list" id="counterList">
+          <!-- Populated by JS -->
+        </div>
+      </section>
+
+      <!-- Interactive Visual Graph Analytics Section -->
+      <section class="charts-section">
+        <div class="section-title-bar">
+          <h3>Interactive Research Analytics Graphs</h3>
+          <span class="hint-text">💡 Tip: Click any bar or pie slice below to filter the Evidence Feed instantly!</span>
+        </div>
+        <div class="charts-grid">
+          <div class="chart-card">
+            <h4>Research Themes Volume (Click bar to filter)</h4>
+            <div class="chart-container">
+              <canvas id="opportunityChart"></canvas>
+            </div>
+          </div>
+          <div class="chart-card">
+            <h4>Customer Review Rating Distribution (Click 1-5★ to filter)</h4>
+            <div class="chart-container">
+              <canvas id="ratingChart"></canvas>
+            </div>
+          </div>
+          <div class="chart-card">
+            <h4>Shopper Segment Distribution (Click slice to filter)</h4>
+            <div class="chart-container">
+              <canvas id="segmentChart"></canvas>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Research Themes & Customer Friction Map -->
+      <section class="opportunity-map-section">
+        <div class="section-title-bar">
+          <h3>Discovered Research Themes & Consumer Friction</h3>
+          <span class="hint-text">Click any theme card to view representative customer quotes</span>
+        </div>
+        <div class="opportunity-grid" id="opportunityGrid">
+          <!-- Cards rendered dynamically -->
+        </div>
+      </section>
+
+      <!-- Evidence Feed Section -->
+      <section class="evidence-feed-section">
+        <div class="section-title-bar">
+          <h3 id="feedHeading">Verified Customer Reviews & Evidence Feed</h3>
+          <span class="hint-text" id="evidenceFeedSubtitle">Showing customer statements with star ratings (1-5★) and accurate journey stages</span>
+        </div>
+        <div class="evidence-feed-grid" id="evidenceFeedGrid">
+          <!-- Evidence Cards rendered dynamically -->
+        </div>
+      </section>
+    </main>
+
+    <!-- Slide-Over Detail Drawer -->
+    <div class="drawer-overlay" id="drawerOverlay"></div>
+    <aside class="detail-drawer" id="detailDrawer">
+      <div class="drawer-header">
+        <h3 id="drawerTitle">Evidence Details</h3>
+        <button class="close-btn" id="closeDrawerBtn">✕</button>
+      </div>
+      <div class="drawer-body" id="drawerBody">
+        <!-- Evidence details rendered here -->
+      </div>
+    </aside>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

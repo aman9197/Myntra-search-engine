@@ -1,0 +1,27 @@
+{
+  "name": "myntra-ai-discovery-engine",
+  "version": "1.0.0",
+  "description": "AI-Powered Research & Discovery Engine for Myntra Fashion Wishlist to Purchase Behavior",
+  "main": "server.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "vercel-build": "node -e \"console.log('Vercel deployment ready')\"",
+    "test": "node tests/test_extraction.js && node tests/test_extraction_pipeline.js && node tests/test_opportunity.js && node tests/test_search.js && node tests/test_groq_api.js && node tests/test_server_api.js"
+  },
+  "keywords": [
+    "myntra",
+    "fashion",
+    "discovery-engine",
+    "ai-research",
+    "wishlist-conversion"
+  ],
+  "author": "Antigravity Engineering",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2"
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "weights": {
+    "frequency_weight": 0.25,
+    "severity_weight": 0.25,
+    "proximity_weight": 0.20,
+    "workaround_weight": 0.15,
+    "evidence_strength_weight": 0.15
+  },
+  "overrides": {
+    "severity_threshold": 9.0,
+    "min_opportunity_score_override": 65.0,
+    "weight_min_floor": 0.05
+  },
+  "segments": [
+    "Gen Z / Myntra FWD",
+    "Working Professional",
+    "EORS Sale Shopper",
+    "Occasional / Event Shopper",
+    "High-Frequency Fashion Shopper"
+  ],
+  "sources": [
+    "App Store",
+    "Play Store",
+    "Reddit",
+    "YouTube"
+  ]
+}
