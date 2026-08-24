@@ -2,6 +2,32 @@
   {
     "source": "Reddit",
     "source_url": null,
+    "date": "2026-08-24T19:37:56.197Z",
+    "text": "I wishlisted size L kurta on Myntra during EORS, but didn't buy because size chart was confusing.",
+    "relevance_score": 0.75,
+    "user_intent": "Sale & Price Drop Monitoring",
+    "wishlist_behavior": "Wishlisting items to hold until discount event",
+    "purchase_status": "Abandoned",
+    "purchase_barrier": "Size & Silhouette Fit Uncertainty",
+    "uncertainty": "Size chart inaccuracy and inter-brand size inconsistency",
+    "information_needed": [
+      "Detailed garment body measurements"
+    ],
+    "alternative_considered": null,
+    "external_research": null,
+    "workaround": null,
+    "user_segment": "EORS Sale Shopper",
+    "fashion_category": "Ethnic Wear",
+    "journey_stage": "Wishlist -> External Research -> Abandonment",
+    "sentiment": "Negative",
+    "evidence_strength": "Medium",
+    "rating": null,
+    "theme": "Fit & Size Uncertainty",
+    "sub_theme": "Size Chart Inconsistency"
+  },
+  {
+    "source": "Reddit",
+    "source_url": null,
     "date": "2026-08-24T19:11:23.193Z",
     "text": "I wishlisted size L kurta on Myntra during EORS, but didn't buy because size chart was confusing.",
     "relevance_score": 0.75,

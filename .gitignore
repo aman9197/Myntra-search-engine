@@ -61,10 +61,3 @@ yarn-debug.log*
 yarn-error.log*
 lerna-debug.log*
 
-# Explicitly Keep Data & Config Files Tracked for Vercel Deployment
-!data/
-!data/*
-!Data/
-!Data/*
-!config/
-!config/*
