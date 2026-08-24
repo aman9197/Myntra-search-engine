@@ -183,10 +183,15 @@ function executeEvidenceMode(query, records) {
  */
 function extractCounterEvidence(records, query) {
   const counterRecords = [];
+  const seenQuotes = new Set();
 
   records.forEach(r => {
+    const textLower = (r.text || '').toLowerCase().trim();
+    if (!textLower || seenQuotes.has(textLower)) return;
+
     // 1. Cases where users bought despite high price / no discount
-    if (r.text.toLowerCase().includes('bought') && (r.text.toLowerCase().includes('no discount') || r.text.toLowerCase().includes('full price') || r.text.toLowerCase().includes('needed it'))) {
+    if (textLower.includes('bought') && (textLower.includes('no discount') || textLower.includes('full price') || textLower.includes('needed it'))) {
+      seenQuotes.add(textLower);
       counterRecords.push({
         type: 'Price Resistance Counter-Evidence',
         text: r.text,
@@ -196,12 +201,24 @@ function extractCounterEvidence(records, query) {
     }
 
     // 2. Cases where discount was given but user still abandoned (fit or quality issue outweighed price)
-    if (r.purchase_status === 'Abandoned' && (r.text.toLowerCase().includes('discount') || r.text.toLowerCase().includes('eors')) && r.purchase_barrier && r.purchase_barrier.includes('Fit')) {
+    else if (r.purchase_status === 'Abandoned' && (textLower.includes('discount') || textLower.includes('eors')) && r.purchase_barrier && r.purchase_barrier.includes('Fit')) {
+      seenQuotes.add(textLower);
       counterRecords.push({
         type: 'Discount Inefficacy Counter-Evidence',
         text: r.text,
         source: r.source,
         insight: 'User abandoned wishlisted item despite discount/sale because fit uncertainty remained unresolved.'
+      });
+    }
+
+    // 3. Product return or exchange due to size chart confusion
+    else if (r.purchase_barrier === 'Size & Silhouette Fit Uncertainty' && (textLower.includes('exchange') || textLower.includes('return') || textLower.includes('refund'))) {
+      seenQuotes.add(textLower);
+      counterRecords.push({
+        type: 'Fit Friction Counter-Evidence',
+        text: r.text,
+        source: r.source,
+        insight: 'Product return or exchange occurred due to size chart inaccuracy across apparel brands.'
       });
     }
   });
