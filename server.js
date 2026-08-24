@@ -33,20 +33,44 @@ let researchDatabase = [];
 let scoringConfig = {};
 
 function loadDatabase() {
-  try {
-    if (fs.existsSync(RESEARCH_DB_PATH)) {
-      researchDatabase = JSON.parse(fs.readFileSync(RESEARCH_DB_PATH, 'utf8'));
-      console.log(`Loaded ${researchDatabase.length} research evidence records into memory.`);
-    } else {
-      console.warn('Research database file not found. Initializing empty DB.');
-      researchDatabase = [];
-    }
+  const candidatePaths = [
+    path.join(__dirname, 'data/myntra_extracted_db.json'),
+    path.join(process.cwd(), 'data/myntra_extracted_db.json'),
+    path.join(__dirname, 'Data/myntra_extracted_db.json'),
+    path.join(process.cwd(), 'Data/myntra_extracted_db.json')
+  ];
 
-    if (fs.existsSync(CONFIG_PATH)) {
-      scoringConfig = JSON.parse(fs.readFileSync(CONFIG_PATH, 'utf8'));
+  let loaded = false;
+  for (const dbPath of candidatePaths) {
+    if (fs.existsSync(dbPath)) {
+      try {
+        researchDatabase = JSON.parse(fs.readFileSync(dbPath, 'utf8'));
+        console.log(`Loaded ${researchDatabase.length} research evidence records from ${dbPath}`);
+        loaded = true;
+        break;
+      } catch (e) {
+        console.error(`Error reading ${dbPath}: ${e.message}`);
+      }
     }
-  } catch (err) {
-    console.error(`Database load error: ${err.message}`);
+  }
+
+  if (!loaded) {
+    console.warn('Research database file not found in candidate paths. Initializing empty DB.');
+    researchDatabase = [];
+  }
+
+  const configCandidates = [
+    path.join(__dirname, 'config/myntra_scoring_config.json'),
+    path.join(process.cwd(), 'config/myntra_scoring_config.json')
+  ];
+
+  for (const cfgPath of configCandidates) {
+    if (fs.existsSync(cfgPath)) {
+      try {
+        scoringConfig = JSON.parse(fs.readFileSync(cfgPath, 'utf8'));
+        break;
+      } catch (e) {}
+    }
   }
 }
 
