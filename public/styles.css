@@ -402,13 +402,28 @@ body {
   color: var(--text-muted);
 }
 
-/* Counter Evidence Banner */
+/* Counter Evidence Banner & Controls */
 .counter-evidence-banner {
   background: rgba(245, 158, 11, 0.05);
-  border: 1px solid rgba(245, 158, 11, 0.2);
+  border: 1px solid rgba(245, 158, 11, 0.25);
   border-radius: 12px;
   padding: 16px 20px;
   margin-bottom: 24px;
+  transition: all 0.3s ease;
+}
+
+.counter-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.counter-title-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .counter-badge {
@@ -416,9 +431,9 @@ body {
   color: #000;
   font-size: 11px;
   font-weight: 700;
-  padding: 2px 8px;
+  padding: 3px 8px;
   border-radius: 4px;
-  margin-right: 8px;
+  letter-spacing: 0.5px;
 }
 
 .counter-subtitle {
@@ -426,12 +441,95 @@ body {
   color: var(--text-muted);
 }
 
-.counter-item {
+.counter-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.btn-counter-toggle {
+  background: rgba(245, 158, 11, 0.15);
+  border: 1px solid rgba(245, 158, 11, 0.4);
+  color: #FCD34D;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-counter-toggle:hover {
+  background: rgba(245, 158, 11, 0.3);
+  color: #FFF;
+}
+
+.btn-counter-hide {
+  background: rgba(239, 68, 68, 0.15);
+  border: 1px solid rgba(239, 68, 68, 0.4);
+  color: #FCA5A5;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-counter-hide:hover {
+  background: rgba(239, 68, 68, 0.3);
+  color: #FFF;
+}
+
+.counter-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 14px;
+  transition: all 0.3s ease;
+}
+
+.counter-card {
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(245, 158, 11, 0.2);
+  border-left: 4px solid var(--accent-amber);
+  border-radius: 8px;
+  padding: 12px 16px;
+  transition: transform 0.2s ease;
+}
+
+.counter-card:hover {
+  transform: translateX(4px);
+  border-color: rgba(245, 158, 11, 0.4);
+}
+
+.counter-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+.counter-type-tag {
+  font-size: 11px;
+  font-weight: 700;
+  color: #FCD34D;
+}
+
+.counter-quote-text {
   font-size: 13px;
-  color: var(--text-secondary);
-  margin-top: 8px;
-  padding-left: 12px;
-  border-left: 2px solid var(--accent-amber);
+  color: #F8FAFC;
+  font-style: italic;
+  line-height: 1.4;
+  margin-bottom: 6px;
+}
+
+.counter-insight-box {
+  font-size: 11px;
+  color: var(--text-muted);
+  background: rgba(0, 0, 0, 0.2);
+  padding: 6px 10px;
+  border-radius: 4px;
 }
 
 /* Section Title Bar */

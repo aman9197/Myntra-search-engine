@@ -134,11 +134,21 @@
         </div>
       </section>
 
-      <!-- Counter Evidence Panel -->
+      <!-- Counter Evidence Panel (Upgraded Inspector & Hide Controls) -->
       <section class="counter-evidence-banner" id="counterEvidenceBanner">
         <div class="counter-header">
-          <span class="counter-badge">DISCONFIRMING EVIDENCE</span>
-          <span class="counter-subtitle">Surfaced to eliminate confirmation bias</span>
+          <div class="counter-title-group">
+            <span class="counter-badge">DISCONFIRMING EVIDENCE</span>
+            <span class="counter-subtitle">Surfaced to eliminate confirmation bias</span>
+          </div>
+          <div class="counter-controls">
+            <button class="btn-counter-toggle" id="toggleCounterBtn" onclick="toggleCounterDetails()">
+              <span id="counterToggleText">▲ Collapse Details</span>
+            </button>
+            <button class="btn-counter-hide" onclick="hideCounterBanner()">
+              ❌ Hide Section
+            </button>
+          </div>
         </div>
         <div class="counter-list" id="counterList">
           <!-- Populated by JS -->

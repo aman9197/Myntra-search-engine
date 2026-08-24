@@ -164,13 +164,43 @@ function renderCounterEvidence(counterData) {
     return;
   }
 
+  if (banner.dataset.userHidden === 'true') {
+    banner.style.display = 'none';
+    return;
+  }
+
   banner.style.display = 'block';
   counterData.examples.forEach(ex => {
-    const item = document.createElement('div');
-    item.className = 'counter-item';
-    item.innerHTML = `<strong>${ex.type}:</strong> "${ex.text}" <br><span style="color:var(--text-muted); font-size:11px;">Insight: ${ex.insight} (${ex.source})</span>`;
-    container.appendChild(item);
+    const card = document.createElement('div');
+    card.className = 'counter-card';
+    card.innerHTML = `
+      <div class="counter-card-header">
+        <span class="counter-type-tag">⚡ ${ex.type}</span>
+        <span class="badge badge-source">${ex.source || 'Verified Review'}</span>
+      </div>
+      <div class="counter-quote-text">"${ex.text}"</div>
+      <div class="counter-insight-box">💡 <strong>Growth Insight:</strong> ${ex.insight}</div>
+    `;
+    container.appendChild(card);
   });
+}
+
+function toggleCounterDetails() {
+  const container = document.getElementById('counterList');
+  const toggleText = document.getElementById('counterToggleText');
+  if (container.style.display === 'none') {
+    container.style.display = 'flex';
+    toggleText.textContent = '▲ Collapse Details';
+  } else {
+    container.style.display = 'none';
+    toggleText.textContent = '▼ Expand Details';
+  }
+}
+
+function hideCounterBanner() {
+  const banner = document.getElementById('counterEvidenceBanner');
+  banner.dataset.userHidden = 'true';
+  banner.style.display = 'none';
 }
 
 /**
